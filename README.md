@@ -1,10 +1,10 @@
-# Prompt Decorators
+# Prompt ai
 
-![Prompt Decorators](./image1.png)
+![Prompt ai](./image1.png)
 
 Artificial intelligence is an incredibly powerful tool, but the quality of its responses often depends on how effectively we communicate with it. If you have ever struggled to get a precise, well-structured answer from an AI model, you are not alone. Many users face inconsistencies, vague responses, or excessive trial-and-error in prompt formulation. What if there was a way to standardize and refine AI outputs effortlessly?
 
-**Enter Prompt Decorators** — a simple yet powerful approach that enhances AI responses using structured prefixes. By guiding AI with standardized instructions, Prompt Decorators help ensure that answers are clear, logical, and well-organized. Whether you are a researcher, developer, marketer, or casual user, this technique will save you time and frustration while unlocking AI’s full potential.
+**Enter Prompt ai** — a simple yet powerful approach that enhances AI responses using structured prefixes. By guiding AI with standardized instructions, Prompt ai help ensure that answers are clear, logical, and well-organized. Whether you are a researcher, developer, marketer, or casual user, this technique will save you time and frustration while unlocking AI’s full potential.
 
 ---
 
@@ -21,23 +21,23 @@ AI models have revolutionized how we interact with technology, enabling automate
 3. **Effective prompt engineering is not intuitive.**  
    Crafting precise prompts requires experience, and minor changes in wording can significantly impact AI responses. Without a standardized method, users struggle to get the desired output efficiently.
 
-To address these issues, **Prompt Decorators** offer a straightforward yet powerful solution.
+To address these issues, **Prompt ai** offer a straightforward yet powerful solution.
 
 ---
 
-## 2. Introducing Prompt Decorators (`+++`)
+## 2. Introducing Prompt ai (`+++`)
 
-Inspired by Python decorators, **Prompt Decorators** allow users to modify AI behavior using simple prefixes at the start of a prompt. They offer a standardized way to structure AI responses without the need for lengthy instructions.
+Inspired by Python ai, **Prompt ai** allow users to modify AI behavior using simple prefixes at the start of a prompt. They offer a standardized way to structure AI responses without the need for lengthy instructions.
 
 ### Why `+++` Instead of `@`?
 
-In Python, the `@` symbol is used to apply decorators to functions and classes. However, many online platforms and tools also use `@` for tagging users and agents, making it an impractical choice for AI prompting. To avoid conflicts and ensure clarity, `+++` is used as a distinct and intuitive prefix for Prompt Decorators.
+In Python, the `@` symbol is used to apply ai to functions and classes. However, many online platforms and tools also use `@` for tagging users and agents, making it an impractical choice for AI prompting. To avoid conflicts and ensure clarity, `+++` is used as a distinct and intuitive prefix for Prompt ai.
 
 ---
 
-## 3. Example of Prompt Decorators in Action
+## 3. Example of Prompt ai in Action
 
-This is a normal prompt without decorators:
+This is a normal prompt without ai:
 
 ```
 Suggest a name for an AI YouTube channel focused on AI/ML video tutorials.
@@ -52,7 +52,7 @@ Suggest a name for an AI YouTube channel focused on AI/ML video tutorials.
 
 The `+++Reasoning` decorator forces the AI to provide a logical explanation before suggesting names, encouraging critical thinking and clarity.
 
-Multiple decorators can be combined to refine responses even further:
+Multiple ai can be combined to refine responses even further:
 
 ```
 +++Refine(iterations=3)
@@ -64,7 +64,7 @@ This example instructs the AI to refine its response through three iterations wh
 
 ---
 
-## 4. Key Prompt Decorators and Their Benefits
+## 4. Key Prompt ai and Their Benefits
 
 | **Prompt Decorator**             | **Function**                                       |
 | -------------------------------- | -------------------------------------------------- |
@@ -78,53 +78,53 @@ This example instructs the AI to refine its response through three iterations wh
 | `+++FactCheck`                   | Prioritizes verifying factual accuracy             |
 | `+++OutputFormat(format=FORMAT)` | Structures the response in a specified format      |
 | `+++Tone(style=STYLE)`           | Enforces a specific tone                           |
-| `+++ChatScope`                   | Applies decorators across the entire conversation  |
-| `+++MessageScope`                | Limits decorators to the specific message          |
-| `+++Clear`                       | Clears all or selected active decorators           |
-| `+++ActiveDecs`                  | Displays currently active decorators               |
-| `+++AvailableDecs`               | Lists all available decorators with their statuses |
+| `+++ChatScope`                   | Applies ai across the entire conversation  |
+| `+++MessageScope`                | Limits ai to the specific message          |
+| `+++Clear`                       | Clears all or selected active ai           |
+| `+++ActiveDecs`                  | Displays currently active ai               |
+| `+++AvailableDecs`               | Lists all available ai with their statuses |
 
 Each decorator plays a crucial role in improving AI interactions by enforcing structured, thoughtful, and reliable responses.
 
 ---
 
-## 5. Scope Management and Active Decorators
+## 5. Scope Management and Active ai
 
-Prompt Decorators can operate at two scopes:
+Prompt ai can operate at two scopes:
 
-- **Message Scope**: Decorators apply only to the current prompt.
-- **Chat Scope**: Decorators persist across multiple prompts until cleared.
+- **Message Scope**: ai apply only to the current prompt.
+- **Chat Scope**: ai persist across multiple prompts until cleared.
 
-You can manage active decorators dynamically using special decorators:
-- `+++ChatScope` to activate conversation-wide decorators,
+You can manage active ai dynamically using special ai:
+- `+++ChatScope` to activate conversation-wide ai,
 - `+++MessageScope` to revert to single-message mode,
-- `+++Clear` to clear all or selected active decorators,
-- `+++ActiveDecs` to view active decorators,
-- `+++AvailableDecs` to view all available decorators and their current status.
+- `+++Clear` to clear all or selected active ai,
+- `+++ActiveDecs` to view active ai,
+- `+++AvailableDecs` to view all available ai and their current status.
 
 Maintaining active decorator memory and respecting scope are mandatory for consistent behavior.
 
 ---
 
-## 6. Prompt Decorators Definitions
+## 6. Prompt ai Definitions
 
-The detailed definitions of each Prompt Decorator are provided in the [`prompt-decorators.txt`](./prompt-decorators.txt) file located in this repository.
+The detailed definitions of each Prompt Decorator are provided in the [`prompt-ai.txt`](./prompt-ai.txt) file located in this repository.
 
 This document defines not only how each decorator must behave but also enforces strict compliance requirements, memory management, and scope handling during conversations.
 
-Please note that this implementation reflects one possible realization of the idea. Others may find better ways to define and extend Prompt Decorators over time.
+Please note that this implementation reflects one possible realization of the idea. Others may find better ways to define and extend Prompt ai over time.
 
 ---
 
 ## 7. Learn More
 
-To dive deeper into the concept of Prompt Decorators and how they can enhance AI interactions, check out the detailed article on Medium:  
+To dive deeper into the concept of Prompt ai and how they can enhance AI interactions, check out the detailed article on Medium:  
 **[Read the full article HERE.](#)**
 
 ---
 
 ## 8. Contribution & Licensing
 
-Contributions to expand, refine, or optimize Prompt Decorators are welcome. If you have suggestions, feel free to submit a pull request.
+Contributions to expand, refine, or optimize Prompt ai are welcome. If you have suggestions, feel free to submit a pull request.
 
 This repository is distributed under the **MIT License**. See [`LICENSE`](./LICENSE) for details.
