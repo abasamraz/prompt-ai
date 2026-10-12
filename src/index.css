@@ -1,0 +1,210 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --navy: #050b16;
+    --ivory: #faf9f6;
+    --champagne: #c5a059;
+    --cloud: #f2f2f2;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-family: "Plus Jakarta Sans", "Inter", system-ui, sans-serif;
+    background-color: var(--ivory);
+    color: var(--navy);
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background-color: rgba(197, 160, 89, 0.25);
+    color: var(--navy);
+  }
+
+  /* Focus visible — champagne outline for accessibility */
+  *:focus-visible {
+    outline: 2px solid var(--champagne);
+    outline-offset: 2px;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--cloud);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #c5a05988;
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--champagne);
+  }
+}
+
+@layer components {
+  .container-canvas {
+    max-width: 110rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  .section-padding {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
+
+  @media (min-width: 1024px) {
+    .section-padding {
+      padding-top: 8rem;
+      padding-bottom: 8rem;
+    }
+  }
+
+  .label-text {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--champagne);
+  }
+
+  .heading-serif {
+    font-family: "Playfair Display", Georgia, serif;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.875rem 2rem;
+    background-color: var(--navy);
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.875rem;
+    letter-spacing: 0.05em;
+    border-radius: 9999px;
+    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    cursor: pointer;
+    min-height: 48px;
+  }
+  .btn-primary:hover {
+    background-color: #1a2233;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px -10px rgba(5, 11, 22, 0.4);
+  }
+
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.75rem;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #fff;
+    font-weight: 500;
+    font-size: 0.875rem;
+    letter-spacing: 0.05em;
+    border-radius: 9999px;
+    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    cursor: pointer;
+    min-height: 48px;
+    background: transparent;
+  }
+  .btn-outline:hover {
+    border-color: var(--champagne);
+    color: var(--champagne);
+  }
+
+  .btn-champagne {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.75rem;
+    border: 1px solid var(--champagne);
+    color: var(--champagne);
+    font-weight: 500;
+    font-size: 0.875rem;
+    letter-spacing: 0.05em;
+    border-radius: 9999px;
+    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    cursor: pointer;
+    min-height: 48px;
+    background: transparent;
+    overflow: hidden;
+    position: relative;
+  }
+  .btn-champagne::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--champagne);
+    transform: translateX(-101%);
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    z-index: 0;
+  }
+  .btn-champagne:hover::before {
+    transform: translateX(0);
+  }
+  .btn-champagne:hover {
+    color: var(--navy);
+  }
+  .btn-champagne > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .card-lift {
+    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .card-lift:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 50px -20px rgba(5, 11, 22, 0.25);
+  }
+
+  .img-zoom {
+    overflow: hidden;
+  }
+  .img-zoom img {
+    transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .img-zoom:hover img {
+    transform: scale(1.05);
+  }
+
+  .hide-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .no-tap-highlight {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
