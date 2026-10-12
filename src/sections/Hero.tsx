@@ -1,92 +1,87 @@
-import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { heroImage } from "../data/properties";
+import { motion } from "framer-motion";
+import { cafeConfig, featureBar } from "../data/cafe";
+import { FeatureIcon, ArrowUpRight } from "../components/Icons";
+
+const heroImg =
+  "https://images.unsplash.com/photo-1453614512568-c4024d13c247?auto=format&fit=crop&w=1920&q=80";
 
 export default function Hero() {
   return (
-    <section className="relative h-screen min-h-[640px] w-full overflow-hidden">
-      {/* Background image with Ken Burns effect */}
-      <motion.div
-        initial={{ scale: 1.05 }}
-        animate={{ scale: 1 }}
-        transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
-        className="absolute inset-0"
-      >
+    <section className="relative min-h-[100svh] flex flex-col">
+      {/* Background */}
+      <div className="absolute inset-0">
         <img
-          src={heroImage}
-          alt="Modern luxury villa at dusk with infinity pool and glass walls"
+          src={heroImg}
+          alt="Café Horizon interior with warm lighting and coffee counter"
           className="w-full h-full object-cover"
-          loading="eager"
+          data-fetchpriority="high"
         />
-      </motion.div>
-
-      {/* Dark overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-navy/50 via-navy/30 to-navy/60" />
-
-      {/* Content */}
-      <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-6">
-        <motion.span
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-          className="label-text text-champagne mb-6"
-        >
-          Horizon Properties
-        </motion.span>
-
-        <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-          className="heading-serif text-white text-4xl sm:text-5xl lg:text-6xl xl:text-7xl max-w-4xl text-balance"
-        >
-          Discover Exceptional
-          <br />
-          Homes &amp; Investments
-        </motion.h1>
-
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="text-white/70 text-base sm:text-lg mt-6 max-w-xl leading-relaxed"
-        >
-          Premium properties in prime locations. Find your dream home or the
-          perfect investment with confidence.
-        </motion.p>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="flex flex-col sm:flex-row gap-4 mt-10"
-        >
-          <Link to="/properties" className="btn-primary">
-            <span>Explore Properties</span>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-              <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </Link>
-          <Link to="/contact" className="btn-outline">
-            <span>Contact Us</span>
-          </Link>
-        </motion.div>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/60" />
       </div>
 
-      {/* Scroll indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.2, duration: 0.8 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
-      >
-        <span className="text-[11px] text-white/40 uppercase tracking-label">Scroll</span>
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
-          className="w-px h-10 bg-gradient-to-b from-champagne/60 to-transparent"
-        />
-      </motion.div>
+      {/* Content */}
+      <div className="relative flex-1 flex items-center">
+        <div className="container-canvas pt-24 pb-12">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            className="max-w-2xl"
+          >
+            <p className="label-text text-white/80 mb-4">
+              Premium Coffee & Fresh Bites
+            </p>
+            <h1 className="heading-serif text-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl mb-5 text-balance">
+              {cafeConfig.heroHeadline}
+            </h1>
+            <p className="text-white/80 text-lg md:text-xl leading-relaxed max-w-xl mb-8 text-balance">
+              {cafeConfig.heroSubtext}
+            </p>
+            <div className="flex flex-wrap gap-4">
+              <Link to="/menu" className="btn-primary">
+                Explore Our Menu
+                <ArrowUpRight className="w-4 h-4" />
+              </Link>
+              <Link to="/contact" className="btn-ghost-light">
+                Visit Our Café
+              </Link>
+            </div>
+          </motion.div>
+        </div>
+      </div>
+
+      {/* Feature bar */}
+      <div className="relative bg-[var(--cream)]">
+        <div className="container-canvas">
+          <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-[var(--line)]">
+            {featureBar.map((item, i) => (
+              <motion.div
+                key={item.title}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 + i * 0.1, duration: 0.5 }}
+                className="flex items-center gap-3 py-5 px-3 md:px-6"
+              >
+                <div className="w-11 h-11 rounded-full bg-white flex items-center justify-center shrink-0 shadow-sm">
+                  <FeatureIcon
+                    name={item.icon}
+                    className="w-5 h-5 text-[var(--terracotta)]"
+                  />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-sm text-[var(--espresso)]">
+                    {item.title}
+                  </h3>
+                  <p className="text-xs text-[var(--text-muted)] leading-snug">
+                    {item.text}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </div>
     </section>
   );
 }

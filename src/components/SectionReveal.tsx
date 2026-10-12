@@ -1,14 +1,17 @@
 import { motion } from "framer-motion";
 import type { ReactNode } from "react";
 
-interface Props {
+export default function SectionReveal({
+  children,
+  delay = 0,
+  y = 24,
+  className = "",
+}: {
   children: ReactNode;
   delay?: number;
   y?: number;
   className?: string;
-}
-
-export default function SectionReveal({ children, delay = 0, y = 30, className }: Props) {
+}) {
   return (
     <motion.div
       initial={{ opacity: 0, y }}

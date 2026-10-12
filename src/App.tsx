@@ -1,14 +1,14 @@
 import { Routes, Route, useLocation } from "react-router-dom";
 import { useEffect } from "react";
+import { CartProvider } from "./context/CartContext";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import CartDrawer from "./components/CartDrawer";
 import Home from "./pages/Home";
-import Properties from "./pages/Properties";
-import PropertyDetail from "./pages/PropertyDetail";
-import About from "./pages/About";
-import Services from "./pages/Services";
-import Team from "./pages/Team";
-import Contact from "./pages/Contact";
+import MenuPage from "./pages/MenuPage";
+import CoffeePage from "./pages/CoffeePage";
+import GalleryPage from "./pages/GalleryPage";
+import ContactPage from "./pages/ContactPage";
 import NotFound from "./pages/NotFound";
 
 function ScrollToTop() {
@@ -21,22 +21,21 @@ function ScrollToTop() {
 
 export default function App() {
   return (
-    <>
+    <CartProvider>
       <ScrollToTop />
       <Header />
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/properties" element={<Properties />} />
-          <Route path="/properties/:id" element={<PropertyDetail />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/team" element={<Team />} />
-          <Route path="/contact" element={<Contact />} />
+          <Route path="/menu" element={<MenuPage />} />
+          <Route path="/coffee" element={<CoffeePage />} />
+          <Route path="/gallery" element={<GalleryPage />} />
+          <Route path="/contact" element={<ContactPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
       <Footer />
-    </>
+      <CartDrawer />
+    </CartProvider>
   );
 }

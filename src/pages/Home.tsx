@@ -1,21 +1,25 @@
 import Hero from "../sections/Hero";
-import WhoWeAre from "../sections/WhoWeAre";
-import FeaturedProperties from "../sections/FeaturedProperties";
-import ServicesSection from "../sections/ServicesSection";
-import WhyChooseHorizon from "../sections/WhyChooseHorizon";
-import TeamSection from "../sections/TeamSection";
-import CTASection from "../sections/CTASection";
+import OurStory from "../sections/OurStory";
+import FeaturedMenu from "../sections/FeaturedMenu";
+import CoffeeExperience from "../sections/CoffeeExperience";
+import SignatureDrinks from "../sections/SignatureDrinks";
+import GallerySection from "../sections/GallerySection";
+import WhyChooseUs from "../sections/WhyChooseUs";
+import Reviews from "../sections/Reviews";
+import ReservationCTA from "../sections/ReservationCTA";
 
 export default function Home() {
   return (
     <>
       <Hero />
-      <WhoWeAre />
-      <FeaturedProperties />
-      <ServicesSection />
-      <WhyChooseHorizon />
-      <TeamSection />
-      <CTASection />
+      <OurStory />
+      <FeaturedMenu />
+      <CoffeeExperience />
+      <SignatureDrinks />
+      <GallerySection />
+      <WhyChooseUs />
+      <Reviews />
+      <ReservationCTA />
     </>
   );
 }

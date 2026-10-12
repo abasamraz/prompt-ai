@@ -1,79 +1,157 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { cafeConfig, contactInfo, openingHours } from "../data/cafe";
+import {
+  CupIcon,
+  InstagramIcon,
+  FacebookIcon,
+  PinterestIcon,
+  PhoneIcon,
+  MailIcon,
+  PinIcon,
+  ClockIcon,
+  ArrowUpRight,
+} from "./Icons";
 
-const navLinks = [
+const footerNav = [
   { label: "Home", path: "/" },
-  { label: "Properties", path: "/properties" },
-  { label: "About Us", path: "/about" },
-  { label: "Services", path: "/services" },
-  { label: "Team", path: "/team" },
+  { label: "Our Story", path: "/#story" },
+  { label: "Menu", path: "/menu" },
+  { label: "Coffee", path: "/coffee" },
+  { label: "Gallery", path: "/gallery" },
   { label: "Contact", path: "/contact" },
 ];
 
-function Logo() {
-  return (
-    <Link to="/" className="flex items-center gap-2.5 no-tap-highlight" aria-label="Horizon Properties home">
-      <svg width="28" height="28" viewBox="0 0 28 28" fill="none" className="shrink-0">
-        <path d="M4 22L10 8L14 16L18 6L24 22" stroke="#C5A059" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-        <circle cx="14" cy="14" r="13" stroke="#C5A059" strokeWidth="1" opacity="0.4" />
-      </svg>
-      <span className="text-[15px] font-bold tracking-tight text-white">
-        HORIZON<span className="text-champagne"> PROPERTIES</span>
-      </span>
-    </Link>
-  );
-}
+const menuLinks = [
+  { label: "Espresso", path: "/menu" },
+  { label: "Signature Coffee", path: "/menu" },
+  { label: "Iced Drinks", path: "/menu" },
+  { label: "Pastries", path: "/menu" },
+  { label: "Desserts", path: "/menu" },
+  { label: "Light Bites", path: "/menu" },
+];
 
 export default function Footer() {
   const [email, setEmail] = useState("");
-  const [subscribed, setSubscribed] = useState(false);
+  const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
 
   const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault();
-    if (email.trim()) {
-      setSubscribed(true);
-      setEmail("");
-      setTimeout(() => setSubscribed(false), 3000);
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setStatus("error");
+      return;
     }
+    setStatus("success");
+    setEmail("");
+    setTimeout(() => setStatus("idle"), 4000);
   };
 
   return (
-    <footer className="bg-navy text-white">
-      {/* Champagne top border */}
-      <div className="h-px w-full bg-champagne/30" />
-
-      <div className="container-canvas py-16 lg:py-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
-          {/* Brand */}
-          <div className="lg:col-span-1">
-            <Logo />
-            <p className="mt-5 text-sm text-white/50 leading-relaxed max-w-xs">
-              Connecting people with extraordinary homes and smart investments. Integrity,
-              transparency, and client satisfaction at the heart of everything we do.
+    <footer className="bg-[var(--espresso)] text-white">
+      {/* Newsletter strip */}
+      <div className="border-b border-white/10">
+        <div className="container-canvas py-12 md:py-16">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
+            <div className="max-w-md">
+              <h3 className="heading-serif text-2xl md:text-3xl mb-2">
+                Join Our Coffee Circle
+              </h3>
+              <p className="text-white/60 text-sm leading-relaxed">
+                Subscribe for seasonal menus, new brews, and members-only offers.
+              </p>
+            </div>
+            <form
+              onSubmit={handleSubscribe}
+              className="flex gap-3 w-full md:w-auto md:min-w-[360px]"
+            >
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                  setStatus("idle");
+                }}
+                placeholder="your@email.com"
+                className="flex-1 px-4 py-3 rounded-full bg-white/10 border border-white/15 text-white placeholder-white/40 text-sm focus:outline-none focus:border-[var(--terracotta)] transition-colors"
+                aria-label="Email address"
+              />
+              <button
+                type="submit"
+                className="btn-primary shrink-0"
+              >
+                Subscribe
+              </button>
+            </form>
+          </div>
+          {status === "success" && (
+            <p className="mt-3 text-sm text-[var(--terracotta)]">
+              Thank you! Please check your email to confirm. (Newsletter delivery requires backend integration.)
             </p>
-            <div className="flex gap-3 mt-6">
-              {["instagram", "facebook", "linkedin"].map((social) => (
-                <a
-                  key={social}
-                  href="#"
-                  aria-label={social}
-                  className="w-10 h-10 rounded-full border border-white/15 flex items-center justify-center text-white/60 hover:text-champagne hover:border-champagne/50 transition-all duration-300"
-                >
-                  <SocialIcon name={social} />
-                </a>
-              ))}
+          )}
+          {status === "error" && (
+            <p className="mt-3 text-sm text-red-300">
+              Please enter a valid email address.
+            </p>
+          )}
+        </div>
+      </div>
+
+      {/* Main footer */}
+      <div className="container-canvas py-12 md:py-16">
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 md:gap-10">
+          {/* Brand */}
+          <div className="col-span-2 lg:col-span-2">
+            <Link to="/" className="flex items-center gap-2 mb-4">
+              <CupIcon className="w-7 h-7 text-[var(--terracotta)]" />
+              <span className="heading-serif text-lg tracking-wide">
+                CAFÉ HORIZON
+              </span>
+            </Link>
+            <p className="text-white/50 text-sm leading-relaxed max-w-xs mb-6">
+              Exceptional coffee, thoughtfully crafted. A place where quality, comfort, and community come together.
+            </p>
+            <div className="flex gap-3">
+              <a
+                href={contactInfo.social.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-full border border-white/15 flex items-center justify-center text-white/60 hover:text-[var(--terracotta)] hover:border-[var(--terracotta)] transition-colors"
+                aria-label="Instagram"
+              >
+                <InstagramIcon className="w-5 h-5" />
+              </a>
+              <a
+                href={contactInfo.social.facebook}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-full border border-white/15 flex items-center justify-center text-white/60 hover:text-[var(--terracotta)] hover:border-[var(--terracotta)] transition-colors"
+                aria-label="Facebook"
+              >
+                <FacebookIcon className="w-5 h-5" />
+              </a>
+              <a
+                href={contactInfo.social.pinterest}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-full border border-white/15 flex items-center justify-center text-white/60 hover:text-[var(--terracotta)] hover:border-[var(--terracotta)] transition-colors"
+                aria-label="Pinterest"
+              >
+                <PinterestIcon className="w-5 h-5" />
+              </a>
             </div>
           </div>
 
           {/* Navigation */}
           <div>
-            <h3 className="label-text mb-5">Navigation</h3>
-            <ul className="space-y-3">
-              {navLinks.map((link) => (
-                <li key={link.path}>
+            <h4 className="text-xs font-semibold tracking-[0.15em] uppercase text-white/40 mb-4">
+              Explore
+            </h4>
+            <ul className="space-y-2.5">
+              {footerNav.map((link) => (
+                <li key={link.label}>
                   <Link
                     to={link.path}
-                    className="text-sm text-white/60 hover:text-champagne transition-colors duration-300"
+                    className="text-sm text-white/60 hover:text-[var(--terracotta)] transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -82,53 +160,74 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Contact */}
+          {/* Menu */}
           <div>
-            <h3 className="label-text mb-5">Contact</h3>
-            <ul className="space-y-3 text-sm text-white/60">
-              <li className="flex items-start gap-3">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" className="mt-0.5 shrink-0 text-champagne">
-                  <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0122 16.92z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-                <a href="tel:5552467890" className="hover:text-champagne transition-colors">(555) 246-7890</a>
-              </li>
-              <li className="flex items-start gap-3">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" className="mt-0.5 shrink-0 text-champagne">
-                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" strokeWidth="1.5" />
-                  <path d="M22 6l-10 7L2 6" stroke="currentColor" strokeWidth="1.5" />
-                </svg>
-                <a href="mailto:info@horizonproperties.com" className="hover:text-champagne transition-colors">info@horizonproperties.com</a>
-              </li>
-              <li className="flex items-start gap-3">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" className="mt-0.5 shrink-0 text-champagne">
-                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" stroke="currentColor" strokeWidth="1.5" />
-                  <circle cx="12" cy="10" r="3" stroke="currentColor" strokeWidth="1.5" />
-                </svg>
-                <span>1200 Architectural Way, Suite 500<br />New York, NY 10001</span>
-              </li>
+            <h4 className="text-xs font-semibold tracking-[0.15em] uppercase text-white/40 mb-4">
+              Menu
+            </h4>
+            <ul className="space-y-2.5">
+              {menuLinks.map((link) => (
+                <li key={link.label}>
+                  <Link
+                    to={link.path}
+                    className="text-sm text-white/60 hover:text-[var(--terracotta)] transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Newsletter */}
+          {/* Contact + Hours */}
           <div>
-            <h3 className="label-text mb-5">Newsletter</h3>
-            <p className="text-sm text-white/50 mb-4">
-              Receive new listings and market insights in your inbox.
-            </p>
-            <form onSubmit={handleSubscribe} className="flex flex-col gap-3">
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Your email address"
-                required
-                className="w-full bg-white/5 border border-white/15 rounded-full px-5 py-3 text-sm text-white placeholder:text-white/30 focus:border-champagne/50 focus:outline-none transition-colors"
-                aria-label="Email for newsletter"
-              />
-              <button type="submit" className="btn-champagne justify-center">
-                <span>{subscribed ? "Subscribed ✓" : "Subscribe"}</span>
-              </button>
-            </form>
+            <h4 className="text-xs font-semibold tracking-[0.15em] uppercase text-white/40 mb-4">
+              Visit Us
+            </h4>
+            <ul className="space-y-3 text-sm text-white/60">
+              <li className="flex items-start gap-2">
+                <PinIcon className="w-4 h-4 mt-0.5 shrink-0 text-white/40" />
+                <span>{contactInfo.address}</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <PhoneIcon className="w-4 h-4 mt-0.5 shrink-0 text-white/40" />
+                <a href={`tel:${contactInfo.phone}`} className="hover:text-[var(--terracotta)] transition-colors">
+                  {contactInfo.phone}
+                </a>
+              </li>
+              <li className="flex items-start gap-2">
+                <MailIcon className="w-4 h-4 mt-0.5 shrink-0 text-white/40" />
+                <a href={`mailto:${contactInfo.email}`} className="hover:text-[var(--terracotta)] transition-colors">
+                  {contactInfo.email}
+                </a>
+              </li>
+            </ul>
+            <a
+              href={contactInfo.mapUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 mt-4 text-sm text-[var(--terracotta)] hover:gap-2 transition-all"
+            >
+              Get Directions <ArrowUpRight className="w-4 h-4" />
+            </a>
+          </div>
+        </div>
+
+        {/* Opening hours strip */}
+        <div className="mt-10 pt-8 border-t border-white/10">
+          <div className="flex items-center gap-2 mb-4">
+            <ClockIcon className="w-4 h-4 text-white/40" />
+            <h4 className="text-xs font-semibold tracking-[0.15em] uppercase text-white/40">
+              Opening Hours
+            </h4>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-x-6 gap-y-2">
+            {openingHours.map((entry) => (
+              <div key={entry.day} className="flex flex-col">
+                <span className="text-xs font-medium text-white/70">{entry.day}</span>
+                <span className="text-xs text-white/40">{entry.hours}</span>
+              </div>
+            ))}
           </div>
         </div>
       </div>
@@ -137,37 +236,21 @@ export default function Footer() {
       <div className="border-t border-white/10">
         <div className="container-canvas py-6 flex flex-col md:flex-row items-center justify-between gap-3">
           <p className="text-xs text-white/40">
-            © {new Date().getFullYear()} Horizon Properties. All rights reserved.
+            © 2025 {cafeConfig.name}. All rights reserved.
           </p>
-          <p className="text-xs text-white/40 tracking-label uppercase">
-            Exceptional Homes • Smart Investments
+          <div className="flex items-center gap-6">
+            <a href="#" className="text-xs text-white/40 hover:text-white/70 transition-colors">
+              Privacy Policy
+            </a>
+            <a href="#" className="text-xs text-white/40 hover:text-white/70 transition-colors">
+              Terms & Conditions
+            </a>
+          </div>
+          <p className="text-xs text-white/30 tracking-[0.15em] uppercase">
+            {cafeConfig.tagline}
           </p>
         </div>
       </div>
     </footer>
-  );
-}
-
-function SocialIcon({ name }: { name: string }) {
-  if (name === "instagram")
-    return (
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-        <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" strokeWidth="1.5" />
-        <circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="1.5" />
-        <circle cx="17.5" cy="6.5" r="1" fill="currentColor" />
-      </svg>
-    );
-  if (name === "facebook")
-    return (
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-        <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
-      </svg>
-    );
-  return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-      <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
-      <rect x="2" y="9" width="4" height="12" stroke="currentColor" strokeWidth="1.5" />
-      <circle cx="4" cy="4" r="2" stroke="currentColor" strokeWidth="1.5" />
-    </svg>
   );
 }

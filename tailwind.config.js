@@ -4,27 +4,29 @@ export default {
   theme: {
     extend: {
       colors: {
-        navy: {
-          DEFAULT: "#050B16",
-          50: "#1a2233",
-          100: "#141b2a",
-          200: "#0f1420",
-          300: "#0a0e18",
+        espresso: {
+          DEFAULT: "#262623",
+          soft: "#3d3d38",
         },
-        ivory: "#FAF9F6",
-        champagne: {
-          DEFAULT: "#C5A059",
-          light: "#D4B876",
-          dark: "#A8854A",
+        cream: {
+          DEFAULT: "#F7F2ED",
+          dark: "#EDE6DC",
         },
-        cloud: "#F2F2F2",
+        terracotta: {
+          DEFAULT: "#D3855E",
+          dark: "#B86B47",
+        },
+        caramel: "#C49A6C",
+        "warm-white": "#FFFFFF",
+        "warm-gray": "#E8E4DF",
       },
       fontFamily: {
-        sans: ["Plus Jakarta Sans", "Inter", "system-ui", "sans-serif"],
+        sans: ["Plus Jakarta Sans", "system-ui", "sans-serif"],
         serif: ["Playfair Display", "Georgia", "serif"],
+        script: ["Caveat", "cursive"],
       },
       letterSpacing: {
-        label: "0.15em",
+        label: "0.2em",
       },
       maxWidth: {
         canvas: "110rem",
